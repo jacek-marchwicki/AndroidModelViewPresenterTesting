@@ -17,8 +17,8 @@ public class TasksPresenter {
     private final AsyncTasksDao tasksDao;
     @Nullable
     private Listener listener;
-    @Nullable
-    private ImmutableList<Task> storedData;
+//    @Nullable
+//    private ImmutableList<Task> storedData;
 
     @Inject
     public TasksPresenter(final @Nonnull AsyncTasksDao tasksDao) {
@@ -28,7 +28,7 @@ public class TasksPresenter {
     public void register(@Nonnull final Listener listener) {
         this.listener = listener;
 //        if (storedData == null) {
-            listener.showProgress(true);
+        listener.showProgress(true);
 //        } else {
 //            listener.showProgress(false);
 //            listener.swapData(storedData);
@@ -49,7 +49,7 @@ public class TasksPresenter {
                     baseListener.showError(false);
                     baseListener.showProgress(false);
                 }
-                storedData = data;
+//                storedData = data;
             }
         });
     }

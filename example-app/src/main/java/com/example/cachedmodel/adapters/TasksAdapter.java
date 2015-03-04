@@ -13,12 +13,12 @@ import javax.annotation.Nullable;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class CommentsAdapter extends BaseArrayAdapter<Task> {
+public class TasksAdapter extends BaseArrayAdapter<Task> {
 
     @Nonnull
     private final Context mContext;
 
-    public CommentsAdapter(@Nonnull Context context) {
+    public TasksAdapter(@Nonnull Context context) {
         mContext = checkNotNull(context);
     }
 

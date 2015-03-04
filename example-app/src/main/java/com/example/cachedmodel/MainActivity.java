@@ -25,7 +25,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.anim.FadeAnimationHelper;
-import com.example.cachedmodel.adapters.CommentsAdapter;
+import com.example.cachedmodel.adapters.TasksAdapter;
 import com.example.model.Task;
 import com.example.presenter.TasksPresenter;
 import com.google.common.collect.ImmutableList;
@@ -34,9 +34,9 @@ import javax.annotation.Nonnull;
 
 public class MainActivity extends Activity {
 
-    private CommentsAdapter mAdapter;
+    private TasksAdapter mAdapter;
 
-    private TasksPresenter tasksPresenter;
+    private TasksPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,19 +45,19 @@ public class MainActivity extends Activity {
 
         final FadeAnimationHelper fadeAnimationHelper = new FadeAnimationHelper(getResources());
 
-        tasksPresenter = restoreRetainedFragment();
+        presenter = restoreRetainedFragment();
 
         final View errorView = findViewById(R.id.main_error);
         final ListView listView = (ListView) findViewById(R.id.main_list);
         final View progressView = findViewById(R.id.main_progress);
-        final TextView commentTextView = (TextView) findViewById(R.id.main_comment_edit_text);
+        final TextView taskTextView = (TextView) findViewById(R.id.main_comment_edit_text);
         final View sendButton = findViewById(R.id.main_send_button);
-        final View commentProgress = findViewById(R.id.main_comment_progress);
+        final View taskProgress = findViewById(R.id.main_comment_progress);
 
-        mAdapter = new CommentsAdapter(this);
+        mAdapter = new TasksAdapter(this);
         listView.setAdapter(mAdapter);
 
-        tasksPresenter.register(new TasksPresenter.Listener() {
+        presenter.register(new TasksPresenter.Listener() {
 
             @Override
             public void swapData(@Nonnull final ImmutableList<Task> tasks) {
@@ -71,12 +71,12 @@ public class MainActivity extends Activity {
 
             @Override
             public String getTaskName() {
-                return String.valueOf(commentTextView.getText());
+                return String.valueOf(taskTextView.getText());
             }
 
             @Override
             public void showTaskProgress(final boolean showProgress) {
-                fadeAnimationHelper.setVisibility(commentProgress, showProgress ? View.VISIBLE : View.GONE);
+                fadeAnimationHelper.setVisibility(taskProgress, showProgress ? View.VISIBLE : View.GONE);
             }
 
             @Override
@@ -86,7 +86,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void clearTaskTextView() {
-                commentTextView.setText("");
+                taskTextView.setText("");
             }
 
         });
@@ -94,20 +94,20 @@ public class MainActivity extends Activity {
         errorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tasksPresenter.errorClick();
+                presenter.errorClick();
             }
         });
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
-                tasksPresenter.sendClick();
+                presenter.sendClick();
             }
         });
     }
 
     @Override
     protected void onDestroy() {
-        tasksPresenter.unregister();
+        presenter.unregister();
         super.onDestroy();
     }
 

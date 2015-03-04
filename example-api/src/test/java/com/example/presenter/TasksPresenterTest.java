@@ -46,6 +46,7 @@ public class TasksPresenterTest {
         ObjectGraph.create(new Module()).inject(this);
     }
 
+    // --------------------------------------------------------------------------------------------
     @Test
     public void testAfterStart_showProgress() throws Exception {
         presenter.register(listener);
@@ -70,6 +71,7 @@ public class TasksPresenterTest {
         verify(listener, never()).showError(true);
     }
 
+    // --------------------------------------------------------------------------------------------
     @Test
     public void testAfterGettingTasks_swapData() throws Exception {
         presenter.register(listener);
@@ -97,6 +99,7 @@ public class TasksPresenterTest {
         verify(listener).showProgress(true);
     }
 
+    // --------------------------------------------------------------------------------------------
     @Test
     public void testWhenReceiveTasksAfterUnregister_nothingHappen() throws Exception {
         presenter.register(listener);

@@ -76,6 +76,17 @@ public class TasksDaoImpl implements TasksDao {
         }
     }
 
+    @Override
+    public void deleteTask(int id) {
+        sleepMyLittlePrincess();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try{
+            db.delete(TaskEntry.TABLE_NAME, TaskEntry._ID + "=?", new String[] {Integer.toString(id)} );
+        } finally {
+            db.close();
+        }
+    }
+
     void clear() {
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {

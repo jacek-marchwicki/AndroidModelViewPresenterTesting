@@ -21,6 +21,7 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -97,10 +98,18 @@ public class MainActivity extends Activity {
                 presenter.errorClick();
             }
         });
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {
                 presenter.sendClick();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View arg1, int position, long arg3) {
+                presenter.deleteClick(mAdapter.getItem(position));
             }
         });
     }

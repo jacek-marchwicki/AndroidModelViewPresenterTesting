@@ -39,4 +39,15 @@ public class AsyncTasksDao {
         }, callback, null);
 
     }
+
+    public void deleteTask(final int id, @Nonnull SyncExecutor.OnSuccess<Task> callback) {
+        syncExecutor.executeAndReturn(new Callable<Task>() {
+            @Override
+            public Task call() throws Exception {
+                tasksDao.deleteTask(id);
+                return null;
+            }
+        }, callback, null);
+
+    }
 }

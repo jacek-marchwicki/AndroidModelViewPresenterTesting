@@ -76,6 +76,7 @@ public class TasksDaoImpl implements TasksDao {
         }
     }
 
+    @Nonnull
     @Override
     public Task deleteTask( int id) {
         sleepMyLittlePrincess();

@@ -104,6 +104,7 @@ public class MainActivity extends Activity {
                 presenter.errorClick();
             }
         });
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(final View v) {

@@ -82,6 +82,20 @@ public class TasksPresenter {
 
     }
 
+    public void deleteClick(Task item) {
+        checkState(listener != null, "Called after unregister");
+        listener.showTaskProgress(true);
+        tasksDao.deleteTask((int) item.id(), new SyncExecutor.OnSuccess<Task>() {
+            @Override
+            public void run(final Task data) {
+                if (listener != null) {
+                    listener.showTaskProgress(false);
+                }
+                retrieveData();
+            }
+        });
+    }
+
     public static interface Listener {
 
         void swapData(@Nonnull ImmutableList<Task> tasks);
@@ -89,6 +103,8 @@ public class TasksPresenter {
         void showProgress(boolean showProgress);
 
         String getTaskName();
+
+        long getIdByPosition(int position);
 
         void showTaskProgress(boolean showProgress);
 

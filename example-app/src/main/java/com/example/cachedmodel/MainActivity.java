@@ -114,9 +114,8 @@ public class MainActivity extends Activity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> mAdapter, View arg1, int position, long arg3) {
-//                Toast.makeText(SuggestionActivity.this, "" + position, Toast.LENGTH_SHORT).show();
-                presenter.deleteClick(position);
+            public void onItemClick(AdapterView<?> adapter, View arg1, int position, long arg3) {
+                presenter.deleteClick(mAdapter.getItem(position));
             }
         });
     }

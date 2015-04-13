@@ -44,7 +44,8 @@ public class AsyncTasksDao {
         syncExecutor.executeAndReturn(new Callable<Task>() {
             @Override
             public Task call() throws Exception {
-                return tasksDao.deleteTask(id);
+                tasksDao.deleteTask(id);
+                return null;
             }
         }, callback, null);
 

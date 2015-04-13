@@ -82,11 +82,10 @@ public class TasksPresenter {
 
     }
 
-    public void deleteClick(int position) {
+    public void deleteClick(Task item) {
         checkState(listener != null, "Called after unregister");
         listener.showTaskProgress(true);
-        long id = listener.getIdByPosition(position);
-        tasksDao.deleteTask((int) id, new SyncExecutor.OnSuccess<Task>() {
+        tasksDao.deleteTask((int) item.id(), new SyncExecutor.OnSuccess<Task>() {
             @Override
             public void run(final Task data) {
                 if (listener != null) {

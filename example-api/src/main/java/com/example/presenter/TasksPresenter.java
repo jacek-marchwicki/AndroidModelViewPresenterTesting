@@ -104,8 +104,6 @@ public class TasksPresenter {
 
         String getTaskName();
 
-        long getIdByPosition(int position);
-
         void showTaskProgress(boolean showProgress);
 
         void showError(boolean showError);

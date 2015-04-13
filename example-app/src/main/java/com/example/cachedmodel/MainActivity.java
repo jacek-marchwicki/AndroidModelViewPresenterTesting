@@ -76,12 +76,6 @@ public class MainActivity extends Activity {
             }
 
             @Override
-            public long getIdByPosition(int position) {
-                Task item = mAdapter.getItem(position);
-                return item.id();
-            }
-
-            @Override
             public void showTaskProgress(final boolean showProgress) {
                 fadeAnimationHelper.setVisibility(taskProgress, showProgress ? View.VISIBLE : View.GONE);
             }

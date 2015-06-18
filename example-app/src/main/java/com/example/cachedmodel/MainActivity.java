@@ -17,10 +17,16 @@
 package com.example.cachedmodel;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -103,6 +109,31 @@ public class MainActivity extends Activity {
                 presenter.sendClick();
             }
         });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                final Task task = mAdapter.getItem(i);
+                final EditText editText = new EditText(MainActivity.this);
+                editText.setText(task.name());
+                new AlertDialog.Builder(MainActivity.this)
+                        .setTitle(R.string.main_activity_edit_title)
+                        .setMessage(R.string.main_activity_edit_text)
+                        .setView(editText)
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                presenter.sendItemListClick(task.withName(String.valueOf(editText.getText())));
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                            }
+                        })
+                        .show();
+            }
+        });
     }
 
     @Override
@@ -155,7 +186,6 @@ public class MainActivity extends Activity {
             addsTo = MainApplication.Module.class
     )
     class Module {
-
     }
 
 }

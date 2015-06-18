@@ -9,4 +9,7 @@
     <string name="send_button">Send</string>
     <string name="some_error">Error</string>
 
+    <string name="main_activity_edit_title">Change</string>
+    <string name="main_activity_edit_text">Enter new task name</string>
+
 </resources>

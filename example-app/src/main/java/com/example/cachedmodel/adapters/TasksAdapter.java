@@ -29,6 +29,12 @@ public class TasksAdapter extends BaseArrayAdapter<Task> {
     }
 
     @Override
+    protected String getItemString(int position, @Nonnull Task item) {
+        return item.name();
+    }
+
+
+    @Override
     protected View getView(int position,
                            @Nonnull Task item,
                            @Nullable View convertView,

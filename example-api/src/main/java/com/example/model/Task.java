@@ -1,6 +1,7 @@
 package com.example.model;
 
 import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 public class Task {
     private final long id;
@@ -36,5 +37,10 @@ public class Task {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + name.hashCode();
         return result;
+    }
+
+    @Nonnull
+    public Task withName(@Nonnull String name) {
+        return new Task(id, name);
     }
 }

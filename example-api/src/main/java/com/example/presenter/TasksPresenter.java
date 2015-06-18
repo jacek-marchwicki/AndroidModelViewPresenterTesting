@@ -82,6 +82,21 @@ public class TasksPresenter {
 
     }
 
+    public void sendItemListClick(@Nonnull Task task) {
+        checkState(listener != null, "Called after unregister");
+        listener.showTaskProgress(true);
+        tasksDao.changeItemOnListViewContent(task,
+                new SyncExecutor.OnSuccess<Task>() {
+                    @Override
+                    public void run(final Task data) {
+                        if (listener != null) {
+                            listener.showTaskProgress(false);
+                        }
+                        retrieveData();
+                    }
+                });
+    }
+
     public static interface Listener {
 
         void swapData(@Nonnull ImmutableList<Task> tasks);

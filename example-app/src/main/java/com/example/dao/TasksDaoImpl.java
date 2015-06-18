@@ -76,6 +76,22 @@ public class TasksDaoImpl implements TasksDao {
         }
     }
 
+    @Nonnull
+    @Override
+    public Task taskChangeItemOnListView(@Nonnull final Task task) {
+        sleepMyLittlePrincess();
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        try {
+            final ContentValues values = new ContentValues();
+            values.put(TaskEntry.COLUMN_NAME, task.name());
+            db.update(TaskEntry.TABLE_NAME, values, TaskEntry._ID + "=?", new String[]{
+                    String.valueOf(task.id())});
+        } finally {
+            db.close();
+        }
+        return task;
+    }
+
     void clear() {
         final SQLiteDatabase db = dbHelper.getWritableDatabase();
         try {
@@ -83,7 +99,6 @@ public class TasksDaoImpl implements TasksDao {
         } finally {
             db.close();
         }
-
     }
 
     static abstract class TaskEntry implements BaseColumns {

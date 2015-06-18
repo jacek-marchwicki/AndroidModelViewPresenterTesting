@@ -37,6 +37,16 @@ public class AsyncTasksDao {
                 return tasksDao.addTask(task);
             }
         }, callback, null);
+    }
 
+
+    public void changeItemOnListViewContent(@Nonnull final Task task,
+                                            @Nonnull SyncExecutor.OnSuccess<Task> callback) {
+        syncExecutor.executeAndReturn(new Callable<Task>() {
+            @Override
+            public Task call() throws Exception {
+                return tasksDao.taskChangeItemOnListView(task);
+            }
+        }, callback, null);
     }
 }

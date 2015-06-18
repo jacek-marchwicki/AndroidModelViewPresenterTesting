@@ -20,6 +20,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
+import com.example.model.Task;
 import com.google.common.collect.ImmutableList;
 
 import javax.annotation.Nonnull;
@@ -83,9 +84,9 @@ public abstract class BaseArrayAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-
     protected abstract long getItemId(int position,
                                       @Nonnull T item);
+
 
     protected abstract View getView(int position,
                                     @Nonnull T item,

@@ -84,13 +84,8 @@ public abstract class BaseArrayAdapter<T> extends BaseAdapter {
         notifyDataSetChanged();
     }
 
-
     protected abstract long getItemId(int position,
                                       @Nonnull T item);
-
-    protected abstract String getItemString(int position,
-                                     @Nonnull T item);
-
 
 
     protected abstract View getView(int position,

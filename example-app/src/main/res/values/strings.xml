@@ -11,5 +11,7 @@
 
     <string name="main_activity_edit_title">Change</string>
     <string name="main_activity_edit_text">Enter new task name</string>
+    <string name="alertdialog_yes">Ok</string>
+    <string name="alertdialog_cancel">Cancel</string>
 
 </resources>

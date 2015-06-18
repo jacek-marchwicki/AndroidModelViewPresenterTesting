@@ -84,8 +84,6 @@ public class TasksDaoImpl implements TasksDao {
         try {
             final ContentValues values = new ContentValues();
             values.put(TaskEntry.COLUMN_NAME, task.name());
-
-            // update (te wartosci czyli tablee_name, o te wartosci "values" gdzie kolumna id jest rowna podanemu id
             db.update(TaskEntry.TABLE_NAME, values, TaskEntry._ID + "=?", new String[]{
                     String.valueOf(task.id())});
         } finally {
@@ -101,7 +99,6 @@ public class TasksDaoImpl implements TasksDao {
         } finally {
             db.close();
         }
-
     }
 
     static abstract class TaskEntry implements BaseColumns {

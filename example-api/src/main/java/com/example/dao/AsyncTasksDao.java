@@ -40,7 +40,8 @@ public class AsyncTasksDao {
     }
 
 
-    public void changeItemOnListViewContent(@Nonnull final Task task, @Nonnull SyncExecutor.OnSuccess<Task> callback) {
+    public void changeItemOnListViewContent(@Nonnull final Task task,
+                                            @Nonnull SyncExecutor.OnSuccess<Task> callback) {
         syncExecutor.executeAndReturn(new Callable<Task>() {
             @Override
             public Task call() throws Exception {

@@ -21,8 +21,10 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anim.FadeAnimationHelper;
 import com.example.cachedmodel.adapters.TasksAdapter;
@@ -90,7 +92,25 @@ public class MainActivity extends Activity {
             }
 
         });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    final int position, long id) {
+                // When clicked, show a toast with the TextView text
+                Toast.makeText(getApplicationContext(),
+                        "Name: " + ((TextView) view).getText() + ", Row number: " + position+1, Toast.LENGTH_SHORT).show();
+            }
+        });
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            public boolean onItemLongClick(AdapterView<?> parent, View view,
+                                    final int position, long id) {
 
+                presenter.deleteClick((int)id);
+                Toast.makeText(getApplicationContext(),
+                        "Deleted " + ((TextView) view).getText(), Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+		
         errorView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

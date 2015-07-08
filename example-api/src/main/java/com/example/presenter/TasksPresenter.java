@@ -81,7 +81,22 @@ public class TasksPresenter {
         });
 
     }
+    public void deleteClick(int position){
+        checkState(listener != null, "Called after unregister");
+        listener.showTaskProgress(true);
+        final String taskName = listener.getTaskName();
+        tasksDao.deleteTask(new Task(-1, taskName, position), new SyncExecutor.OnSuccess<Task>() {
+            @Override
+            public void run(final Task data) {
+                if (listener != null) {
+                    listener.showTaskProgress(false);
+                    listener.clearTaskTextView();
+                }
+                retrieveData();
+            }
+        });
 
+    }
     public static interface Listener {
 
         void swapData(@Nonnull ImmutableList<Task> tasks);

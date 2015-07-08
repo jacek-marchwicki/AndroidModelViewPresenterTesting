@@ -10,4 +10,6 @@ public interface TasksDao {
     public ImmutableList<Task> getAllTasks();
     @Nonnull
     public Task addTask(@Nonnull final Task task);
+	@Nonnull
+    public Task deleteTask(@Nonnull final Task task);
 }

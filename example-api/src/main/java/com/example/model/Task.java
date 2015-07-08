@@ -4,12 +4,27 @@ import javax.annotation.Nonnull;
 
 public class Task {
     private final long id;
+
+    private int cid;
+    public int getCid() {
+        return cid;
+    }
+
+    public void setCid(int cid) {
+        this.cid = cid;
+    }
+
     @Nonnull
     private final String name;
 
     public Task(final long id, @Nonnull final String name) {
         this.id = id;
         this.name = name;
+    }
+	public Task(final long id, @Nonnull final String name, int cid) {
+        this.id = id;
+        this.name = name;
+        this.cid = cid;
     }
 
     public long id() {
